@@ -17,7 +17,7 @@ import {
 } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import { FormikProps } from 'formik'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
   getTranslatedLanguage,
   getTranslatedSkill,
@@ -71,10 +71,6 @@ export const SelectRaceDialog: React.FC<SelectRaceDialogProps> = ({
   const raceSummary = selectedRace
     ? makeRaceSummaries()[selectedRace]
     : undefined
-
-  useEffect(() => {
-    console.log(selectedSubRace)
-  }, [selectedSubRace])
 
   return (
     <Dialog open onClose={onClose} PaperComponent={DialogPaper}>
@@ -244,7 +240,6 @@ export const SelectRaceDialog: React.FC<SelectRaceDialogProps> = ({
           }
           variant="contained"
           onClick={() => {
-            console.log(selectedSubRace)
             setFieldValue('race', {
               type: raceSummary?.type,
               name: raceSummary?.name,
