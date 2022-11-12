@@ -1,3 +1,4 @@
+import { PlayerChoices } from './playerChoice'
 import { RaceType } from './raceSummary'
 
 export interface CharacterRace {
@@ -8,6 +9,7 @@ export interface CharacterRace {
 export interface CharacterSubRace {
   type: string
   name: string
+  playerChoices?: PlayerChoices
 }
 
 export interface Character {

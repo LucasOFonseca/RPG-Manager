@@ -2,7 +2,7 @@ import { Box, TextField } from '@mui/material'
 import { FormikProps } from 'formik'
 import { useState } from 'react'
 import { Character } from '../../../../../../shared/models'
-import { SelectRaceDialog } from '../SelectRaceDialog'
+import { SelectRaceDialog } from './components/SelectRaceDialog'
 
 interface BasicInfoStepProps {
   formik: FormikProps<Character>

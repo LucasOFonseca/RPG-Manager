@@ -17,17 +17,17 @@ import {
 } from '@mui/material'
 import { grey } from '@mui/material/colors'
 import { FormikProps } from 'formik'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   getTranslatedLanguage,
   getTranslatedSkill,
   makeRaceSummaries,
-} from '../../../../../../helpers/utils'
+} from '../../../../../../../../helpers/utils'
 import {
   Character,
   CharacterSubRace,
   RaceType,
-} from '../../../../../../shared/models'
+} from '../../../../../../../../shared/models'
 import { SubRaceCard } from './components/SubRaceCard'
 
 const DialogPaper = styled(Paper)(({ theme }) => ({
@@ -63,14 +63,18 @@ export const SelectRaceDialog: React.FC<SelectRaceDialogProps> = ({
   const [selectedRace, setSelectedRace] = useState<RaceType | undefined>(
     values.race?.type
   )
-
   const [selectedSubRace, setSelectedSubRace] = useState<
     CharacterSubRace | undefined
   >(values.subRace)
+  const [isValidSubmit, setIsValidSubmit] = useState(false)
 
   const raceSummary = selectedRace
     ? makeRaceSummaries()[selectedRace]
     : undefined
+
+  useEffect(() => {
+    console.log(selectedSubRace)
+  }, [selectedSubRace])
 
   return (
     <Dialog open onClose={onClose} PaperComponent={DialogPaper}>
@@ -119,8 +123,8 @@ export const SelectRaceDialog: React.FC<SelectRaceDialogProps> = ({
                 <Typography>{raceSummary.summary}</Typography>
               ) : (
                 <>
-                  {raceSummary.summary.map((paragraph) => (
-                    <Typography>{paragraph}</Typography>
+                  {raceSummary.summary.map((paragraph, index) => (
+                    <Typography key={index}>{paragraph}</Typography>
                   ))}
                 </>
               )}
@@ -161,13 +165,13 @@ export const SelectRaceDialog: React.FC<SelectRaceDialogProps> = ({
                 </Typography>
 
                 {raceSummary.racialTraits.otherTraits?.map((trait) => (
-                  <Typography>
+                  <Typography key={trait.title}>
                     <strong>{trait.title}:</strong> {trait.description}
                   </Typography>
                 ))}
 
                 {raceSummary.racialTraits.skillEnhancements.map((se) => (
-                  <Typography style={{ fontWeight: 700 }}>{`+${
+                  <Typography key={se.skill} style={{ fontWeight: 700 }}>{`+${
                     se.value
                   } de ${getTranslatedSkill(se.skill)}`}</Typography>
                 ))}
@@ -190,15 +194,32 @@ export const SelectRaceDialog: React.FC<SelectRaceDialogProps> = ({
                 <Box display="flex" flexDirection="column" gap={2}>
                   {raceSummary.subRaces.map((subRace) => (
                     <SubRaceCard
-                      selected={selectedSubRace?.type === subRace.type}
                       key={subRace.type}
+                      selected={selectedSubRace?.type === subRace.type}
                       subRace={subRace}
-                      onClick={() =>
+                      playerChoices={selectedSubRace?.playerChoices}
+                      onClick={() => {
+                        if (subRace.playerChoices) {
+                          setIsValidSubmit(false)
+                        } else {
+                          setIsValidSubmit(true)
+                        }
+
                         setSelectedSubRace({
                           type: subRace.type,
                           name: subRace.name,
                         })
+                      }}
+                      handleChangeIsValidSubmit={(isValid) =>
+                        setIsValidSubmit(isValid)
                       }
+                      handleChangePlayerChoices={(value) => {
+                        setSelectedSubRace({
+                          type: subRace.type,
+                          name: subRace.name,
+                          playerChoices: value,
+                        })
+                      }}
                     />
                   ))}
                 </Box>
@@ -217,10 +238,13 @@ export const SelectRaceDialog: React.FC<SelectRaceDialogProps> = ({
           fullWidth
           disableElevation
           disabled={
-            !selectedRace || (raceSummary?.subRaces && !selectedSubRace)
+            !selectedRace ||
+            (raceSummary?.subRaces && !selectedSubRace) ||
+            !isValidSubmit
           }
           variant="contained"
           onClick={() => {
+            console.log(selectedSubRace)
             setFieldValue('race', {
               type: raceSummary?.type,
               name: raceSummary?.name,

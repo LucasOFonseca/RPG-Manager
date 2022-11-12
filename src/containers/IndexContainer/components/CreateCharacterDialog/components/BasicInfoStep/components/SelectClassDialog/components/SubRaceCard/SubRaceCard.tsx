@@ -1,6 +1,6 @@
 import { alpha, Box, Card, Radio, styled, Typography } from '@mui/material'
-import { getTranslatedSkill } from '../../../../../../../../helpers/utils'
-import { SubRaceSummary } from '../../../../../../../../shared/models'
+import { getTranslatedSkill } from '../../../../../../../../../../helpers/utils'
+import { SubRaceSummary } from '../../../../../../../../../../shared/models'
 
 const Root = styled(Card)(({ theme }) => ({
   display: 'flex',

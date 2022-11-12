@@ -1,4 +1,10 @@
-import { Language, RaceSummary, RaceType, SkillType } from '../../shared/models'
+import {
+  Language,
+  PlayerChoiceType,
+  RaceSummary,
+  RaceType,
+  SkillType,
+} from '../../shared/models'
 
 interface RaceSummaries {
   [key: string]: RaceSummary
@@ -72,6 +78,24 @@ export const makeRaceSummaries = (): RaceSummaries => ({
             value: 1,
           },
         ],
+        playerChoices: {
+          cantrips: {
+            type: PlayerChoiceType.cantrips,
+          },
+          languages: {
+            type: PlayerChoiceType.languages,
+            values: [
+              Language.draconic,
+              Language.dwarvish,
+              Language.giant,
+              Language.gnomish,
+              Language.goblin,
+              Language.halfling,
+              Language.infernal,
+              Language.orc,
+            ],
+          },
+        },
       },
       {
         type: 'woodElf',

@@ -1,4 +1,9 @@
-import { GenericDescriptionItem, Language, SkillType } from '.'
+import {
+  GenericDescriptionItem,
+  Language,
+  PlayerChoicesFormProps,
+  SkillType,
+} from '.'
 
 export enum RaceType {
   elf = 'elf',
@@ -23,6 +28,7 @@ export interface SubRaceSummary {
   name: string
   traits: GenericDescriptionItem[]
   skillEnhancements: SkillEnhancementItem[]
+  playerChoices?: PlayerChoicesFormProps
 }
 
 export interface RaceSummary {
