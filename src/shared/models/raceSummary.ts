@@ -1,16 +1,16 @@
 import {
+  AbilityType,
   GenericDescriptionItem,
   Language,
   PlayerChoicesFormProps,
-  SkillType,
 } from '.'
 
 export enum RaceType {
   elf = 'elf',
 }
 
-export interface SkillEnhancementItem {
-  skill: SkillType
+export interface AbilityEnhancementItem {
+  ability: AbilityType
   value: number
 }
 
@@ -20,14 +20,14 @@ export interface RacialTraits {
   languages: Language[]
   baseMovement: number
   otherTraits?: GenericDescriptionItem[]
-  skillEnhancements: SkillEnhancementItem[]
+  abilityEnhancements: AbilityEnhancementItem[]
 }
 
 export interface SubRaceSummary {
   type: string
   name: string
   traits: GenericDescriptionItem[]
-  skillEnhancements: SkillEnhancementItem[]
+  abilityEnhancements: AbilityEnhancementItem[]
   playerChoices?: PlayerChoicesFormProps
 }
 

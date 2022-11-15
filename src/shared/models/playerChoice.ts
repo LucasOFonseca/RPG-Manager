@@ -1,8 +1,10 @@
-import { Language } from './language'
+import { EnemyType, Language, Skill } from '.'
 
 export enum PlayerChoiceType {
   languages = 'languages',
   cantrips = 'cantrips',
+  enemyType = 'enemyType',
+  skills = 'skills',
 }
 
 export interface PlayerChoices {
@@ -10,6 +12,7 @@ export interface PlayerChoices {
 }
 
 export interface PlayerChoiceFormProps<T> {
+  optional?: boolean
   type: PlayerChoiceType
   quantity?: number
   values?: T[]
@@ -18,4 +21,6 @@ export interface PlayerChoiceFormProps<T> {
 export interface PlayerChoicesFormProps {
   languages?: PlayerChoiceFormProps<Language>
   cantrips?: PlayerChoiceFormProps<string>
+  enemyType?: PlayerChoiceFormProps<EnemyType>
+  skills?: PlayerChoiceFormProps<Skill>
 }

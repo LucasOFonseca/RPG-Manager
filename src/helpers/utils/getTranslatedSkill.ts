@@ -1,18 +1,20 @@
-import { SkillType } from "../../shared/models";
+import { Skill } from '../../shared/models'
 
 interface Translations {
-  [key: string]: string;
+  [key: string]: string
 }
 
-export const getTranslatedSkill = (skill: SkillType) => {
+export const getTranslatedSkill = (skill: Skill) => {
   const translations: Translations = {
-    [SkillType.charisma]: "Carisma",
-    [SkillType.constitution]: "Constituição",
-    [SkillType.dexterity]: "Destreza",
-    [SkillType.intelligence]: "Inteligência",
-    [SkillType.strength]: "Força",
-    [SkillType.wisdom]: "Sabedoria",
-  };
+    [Skill.animalHandling]: 'Adestrar animais',
+    [Skill.athletics]: 'Atletismo',
+    [Skill.insight]: 'Intuição',
+    [Skill.investigation]: 'Investigação',
+    [Skill.nature]: 'Natureza',
+    [Skill.perception]: 'Percepção',
+    [Skill.stealth]: 'Furtividade',
+    [Skill.survival]: 'Sobrevivência',
+  }
 
-  return translations[skill];
-};
+  return translations[skill]
+}

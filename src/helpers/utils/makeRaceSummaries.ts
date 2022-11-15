@@ -1,9 +1,9 @@
 import {
+  AbilityType,
   Language,
   PlayerChoiceType,
   RaceSummary,
   RaceType,
-  SkillType,
 } from '../../shared/models'
 
 interface RaceSummaries {
@@ -23,9 +23,9 @@ export const makeRaceSummaries = (): RaceSummaries => ({
         'Atingem a maturidade física praticamente na mesma idade que os humanos, mas são considerados adultos apenas após os 100 anos podendo viver até 750 anos.',
       languages: [Language.common, Language.elvish],
       baseMovement: 9,
-      skillEnhancements: [
+      abilityEnhancements: [
         {
-          skill: SkillType.dexterity,
+          ability: AbilityType.dexterity,
           value: 2,
         },
       ],
@@ -72,9 +72,9 @@ export const makeRaceSummaries = (): RaceSummaries => ({
               'Concede fluência em um idioma adicional à sua escolha.',
           },
         ],
-        skillEnhancements: [
+        abilityEnhancements: [
           {
-            skill: SkillType.intelligence,
+            ability: AbilityType.intelligence,
             value: 1,
           },
         ],
@@ -116,9 +116,9 @@ export const makeRaceSummaries = (): RaceSummaries => ({
               'Pode tentar se esconder mesmo estando levemente obscurecido por folhagens, chuva forte, ou qualquer outro fenômeno natural.',
           },
         ],
-        skillEnhancements: [
+        abilityEnhancements: [
           {
-            skill: SkillType.wisdom,
+            ability: AbilityType.wisdom,
             value: 1,
           },
         ],

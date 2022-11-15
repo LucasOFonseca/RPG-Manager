@@ -3,12 +3,14 @@ import { useCallback, useEffect, useState } from 'react'
 
 interface CantripsInputProps {
   initialValues?: string[]
+  quantity?: number
   onChange: (values: string[]) => void
   handleValidate: (isValid: boolean) => void
 }
 
 export const CantripsInput: React.FC<CantripsInputProps> = ({
   initialValues,
+  quantity,
   onChange,
   handleValidate,
 }) => {

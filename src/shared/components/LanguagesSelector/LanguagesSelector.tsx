@@ -5,6 +5,7 @@ import { Language } from '../../models'
 
 interface LanguagesSelectorProps {
   initialValues?: Language[]
+  quantity?: number
   values?: Language[]
   onChange: (values: Language[]) => void
   handleValidate: (isValid: boolean) => void
@@ -12,10 +13,24 @@ interface LanguagesSelectorProps {
 
 export const LanguagesSelector: React.FC<LanguagesSelectorProps> = ({
   initialValues,
-  values = [],
+  quantity,
+  values,
   onChange,
   handleValidate,
 }) => {
+  const allLanguages = [
+    Language.common,
+    Language.draconic,
+    Language.dwarvish,
+    Language.elvish,
+    Language.giant,
+    Language.gnomish,
+    Language.goblin,
+    Language.halfling,
+    Language.infernal,
+    Language.orc,
+  ]
+
   const [selectedLanguage, setSelectedLanguage] = useState(initialValues?.[0])
 
   useEffect(() => {
@@ -37,11 +52,17 @@ export const LanguagesSelector: React.FC<LanguagesSelectorProps> = ({
           setSelectedLanguage(target.value as Language)
         }}
       >
-        {values.map((value) => (
-          <MenuItem key={value} value={value}>
-            {getTranslatedLanguage(value)}
-          </MenuItem>
-        ))}
+        {values
+          ? values.map((value) => (
+              <MenuItem key={value} value={value}>
+                {getTranslatedLanguage(value)}
+              </MenuItem>
+            ))
+          : allLanguages.map((value) => (
+              <MenuItem key={value} value={value}>
+                {getTranslatedLanguage(value)}
+              </MenuItem>
+            ))}
       </Select>
     </FormControl>
   )

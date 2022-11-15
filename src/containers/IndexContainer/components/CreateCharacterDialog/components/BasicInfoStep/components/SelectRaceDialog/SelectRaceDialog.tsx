@@ -15,12 +15,11 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material'
-import { grey } from '@mui/material/colors'
 import { FormikProps } from 'formik'
 import { useState } from 'react'
 import {
+  getTranslatedAbility,
   getTranslatedLanguage,
-  getTranslatedSkill,
   makeRaceSummaries,
 } from '../../../../../../../../helpers/utils'
 import {
@@ -166,10 +165,10 @@ export const SelectRaceDialog: React.FC<SelectRaceDialogProps> = ({
                   </Typography>
                 ))}
 
-                {raceSummary.racialTraits.skillEnhancements.map((se) => (
-                  <Typography key={se.skill} style={{ fontWeight: 700 }}>{`+${
-                    se.value
-                  } de ${getTranslatedSkill(se.skill)}`}</Typography>
+                {raceSummary.racialTraits.abilityEnhancements.map((ae) => (
+                  <Typography key={ae.ability} style={{ fontWeight: 700 }}>{`+${
+                    ae.value
+                  } de ${getTranslatedAbility(ae.ability)}`}</Typography>
                 ))}
               </RacialTraitsContainer>
             </Box>
@@ -223,7 +222,7 @@ export const SelectRaceDialog: React.FC<SelectRaceDialogProps> = ({
             )}
           </>
         ) : (
-          <Typography style={{ color: grey[800], textAlign: 'center' }}>
+          <Typography style={{ textAlign: 'center' }}>
             Selecione uma Raça para ver suas características
           </Typography>
         )}

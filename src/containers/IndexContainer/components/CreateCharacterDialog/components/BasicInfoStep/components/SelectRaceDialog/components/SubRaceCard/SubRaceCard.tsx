@@ -8,7 +8,7 @@ import {
   styled,
   Typography,
 } from '@mui/material'
-import { getTranslatedSkill } from '../../../../../../../../../../helpers/utils'
+import { getTranslatedAbility } from '../../../../../../../../../../helpers/utils'
 import { PlayerChoicesForm } from '../../../../../../../../../../shared/components/PlayerChoicesForm'
 import {
   PlayerChoices,
@@ -59,10 +59,10 @@ export const SubRaceCard: React.FC<SubRaceCardProps> = ({
             </Typography>
           ))}
 
-          {subRace.skillEnhancements.map((se) => (
-            <Typography key={se.skill} style={{ fontWeight: 700 }}>{`+${
-              se.value
-            } de ${getTranslatedSkill(se.skill)}`}</Typography>
+          {subRace.abilityEnhancements.map((ae) => (
+            <Typography key={ae.ability} style={{ fontWeight: 700 }}>{`+${
+              ae.value
+            } de ${getTranslatedAbility(ae.ability)}`}</Typography>
           ))}
         </Box>
       </ActionBox>
