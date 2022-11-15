@@ -4,6 +4,7 @@ import { CantripsInput } from '../CantripsInput'
 import { EnemyTypesSelector } from '../EnemyTypesSelector'
 import { LanguagesSelector } from '../LanguagesSelector'
 import { SkillsSelector } from '../SkillsSelector'
+import { ToolsInput } from '../ToolsInput'
 
 interface PlayerChoicesFormProps {
   fields: Fields
@@ -37,6 +38,7 @@ export const PlayerChoicesForm: React.FC<PlayerChoicesFormProps> = ({
     cantrips: CantripsInput,
     enemyType: EnemyTypesSelector,
     skills: SkillsSelector,
+    tools: ToolsInput,
   }
 
   const handleValidate = (isValid: boolean, index: number) => {

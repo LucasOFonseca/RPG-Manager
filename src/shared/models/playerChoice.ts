@@ -5,6 +5,7 @@ export enum PlayerChoiceType {
   cantrips = 'cantrips',
   enemyType = 'enemyType',
   skills = 'skills',
+  tools = 'tools',
 }
 
 export interface PlayerChoices {
@@ -23,4 +24,5 @@ export interface PlayerChoicesFormProps {
   cantrips?: PlayerChoiceFormProps<string>
   enemyType?: PlayerChoiceFormProps<EnemyType>
   skills?: PlayerChoiceFormProps<Skill>
+  tools?: PlayerChoiceFormProps<string>
 }

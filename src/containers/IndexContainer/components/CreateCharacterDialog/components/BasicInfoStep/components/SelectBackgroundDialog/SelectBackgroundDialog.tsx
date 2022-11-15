@@ -5,7 +5,6 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  Divider,
   FormControl,
   IconButton,
   InputLabel,
@@ -17,18 +16,16 @@ import {
   Typography,
 } from '@mui/material'
 import { FormikProps } from 'formik'
-import React, { useEffect, useState } from 'react'
-import { makeClassSummaries } from '../../../../../../../../helpers/utils'
+import React, { useState } from 'react'
+import { makeBackgroundSummaries } from '../../../../../../../../helpers/utils'
 import { EquipmentSection } from '../../../../../../../../shared/components/EquipmentSection'
 import { PlayerChoicesForm } from '../../../../../../../../shared/components/PlayerChoicesForm'
 import { ProficienciesSection } from '../../../../../../../../shared/components/ProficienciesSection'
 import {
+  BackgroundType,
   Character,
-  CharacterClassFeature,
-  ClassType,
   PlayerChoices,
 } from '../../../../../../../../shared/models'
-import { ClassFeature } from './components/ClassFeature'
 
 const DialogPaper = styled(Paper)(({ theme }) => ({
   width: 415,
@@ -43,39 +40,27 @@ const DialogPaper = styled(Paper)(({ theme }) => ({
   },
 }))
 
-interface SelectClassDialogProps {
+interface SelectBackgroundDialogProps {
   formik: FormikProps<Character>
   onClose: () => void
 }
 
-export const SelectClassDialog: React.FC<SelectClassDialogProps> = ({
+export const SelectBackgroundDialog: React.FC<SelectBackgroundDialogProps> = ({
   formik,
   onClose,
 }) => {
   const { values, setFieldValue } = formik
 
-  const [selectedClass, setSelectedClass] = useState<ClassType | undefined>(
-    values.class?.type
-  )
-  const [selectedClassPlayerChoices, setSelectedClassPlayerChoices] = useState<
-    PlayerChoices | undefined
-  >(values.class?.playerChoices)
-  const [selectedClassFeatures, setSelectedClassFeatures] = useState<
-    CharacterClassFeature[] | undefined
-  >(values.class?.features)
+  const [selectedBackground, setSelectedBackground] = useState<
+    BackgroundType | undefined
+  >(values.background?.type)
+  const [selectedBackgroundPlayerChoices, setSelectedBackgroundPlayerChoices] =
+    useState<PlayerChoices | undefined>(values.background?.playerChoices)
   const [isValidSubmit, setIsValidSubmit] = useState(false)
 
-  const classSummary = selectedClass
-    ? makeClassSummaries()[selectedClass]
+  const backgroundSummary = selectedBackground
+    ? makeBackgroundSummaries()[selectedBackground]
     : undefined
-
-  useEffect(() => {
-    if (classSummary) {
-      setSelectedClassFeatures(
-        classSummary.features.map((feature) => ({ title: feature.title }))
-      )
-    }
-  }, [selectedClass])
 
   return (
     <Dialog open onClose={onClose} PaperComponent={DialogPaper}>
@@ -87,7 +72,7 @@ export const SelectClassDialog: React.FC<SelectClassDialogProps> = ({
           justifyContent="space-between"
         >
           <Typography variant="h6" style={{ fontWeight: 700 }}>
-            Selecionar classe
+            Selecionar antecedente
           </Typography>
 
           <Tooltip arrow title="Fechar">
@@ -98,35 +83,35 @@ export const SelectClassDialog: React.FC<SelectClassDialogProps> = ({
         </Box>
 
         <FormControl fullWidth>
-          <InputLabel>Classe</InputLabel>
+          <InputLabel>Antecedente</InputLabel>
           <Select
-            value={selectedClass ?? ''}
-            label="Classe"
+            value={selectedBackground ?? ''}
+            label="Antecedente"
             onChange={({ target }) => {
-              setSelectedClass(target.value as ClassType)
+              setSelectedBackground(target.value as BackgroundType)
             }}
           >
-            <MenuItem value={ClassType.ranger}>Patrulheiro</MenuItem>
+            <MenuItem value={BackgroundType.outlander}>Forasteiro</MenuItem>
           </Select>
         </FormControl>
       </Box>
 
       <DialogContent style={{ padding: 16 }}>
-        {classSummary ? (
+        {backgroundSummary ? (
           <>
             <Typography
               variant="h6"
               style={{ fontSize: '1.125rem', fontWeight: 700 }}
             >
-              {classSummary.name}
+              {backgroundSummary.name}
             </Typography>
 
             <Box mt={1}>
-              {typeof classSummary.summary === 'string' ? (
-                <Typography>{classSummary.summary}</Typography>
+              {typeof backgroundSummary.summary === 'string' ? (
+                <Typography>{backgroundSummary.summary}</Typography>
               ) : (
                 <>
-                  {classSummary.summary.map((paragraph, index) => (
+                  {backgroundSummary.summary.map((paragraph, index) => (
                     <Typography key={index}>{paragraph}</Typography>
                   ))}
                 </>
@@ -134,52 +119,43 @@ export const SelectClassDialog: React.FC<SelectClassDialogProps> = ({
             </Box>
 
             <Box mt={2}>
-              <Typography>
-                <strong>Pontos de vida iniciais:</strong>{' '}
-                {classSummary.initialHitPoints} + modificador de Constituição
+              <Typography
+                variant="h6"
+                style={{ fontSize: '1.125rem', fontWeight: 700 }}
+              >
+                Característica: {backgroundSummary.feature.title}
               </Typography>
 
-              <EquipmentSection equipments={classSummary.equipment} />
+              <Box mt={1} display="flex" flexDirection="column" gap={1}>
+                {typeof backgroundSummary.summary === 'string' ? (
+                  <Typography>{backgroundSummary.summary}</Typography>
+                ) : (
+                  <>
+                    {backgroundSummary.summary.map((paragraph, index) => (
+                      <Typography key={index}>{paragraph}</Typography>
+                    ))}
+                  </>
+                )}
+              </Box>
             </Box>
 
-            <Box mt={2}>
-              <Divider />
-
-              {classSummary.features.map((feature, index) => (
-                <React.Fragment key={feature.title}>
-                  <ClassFeature
-                    feature={feature}
-                    playerChoices={selectedClassFeatures?.[index].playerChoices}
-                    handleChangeIsValidSubmit={(isValid) =>
-                      setIsValidSubmit(isValid)
-                    }
-                    handleChangePlayerChoices={(value) => {
-                      const newSelectedClassFeatures =
-                        selectedClassFeatures ?? []
-                      newSelectedClassFeatures[index].playerChoices = value
-                    }}
-                  />
-
-                  <Divider />
-                </React.Fragment>
-              ))}
-            </Box>
+            <EquipmentSection equipments={backgroundSummary.equipment} />
 
             <Box mt={2}>
               <ProficienciesSection
-                proficiencies={classSummary.proficiencies}
+                proficiencies={backgroundSummary.proficiencies}
               />
 
-              {classSummary.playerChoices && (
+              {backgroundSummary.playerChoices && (
                 <Box mt={2} display="flex" flexDirection="column" gap={2}>
                   <PlayerChoicesForm
-                    playerChoices={selectedClassPlayerChoices}
-                    fields={classSummary.playerChoices}
+                    playerChoices={selectedBackgroundPlayerChoices}
+                    fields={backgroundSummary.playerChoices}
                     handleChangeIsValidSubmit={(isValid) =>
                       setIsValidSubmit(isValid)
                     }
                     handleChangePlayerChoices={(value) => {
-                      setSelectedClassPlayerChoices(value)
+                      setSelectedBackgroundPlayerChoices(value)
                     }}
                   />
                 </Box>
@@ -188,7 +164,7 @@ export const SelectClassDialog: React.FC<SelectClassDialogProps> = ({
           </>
         ) : (
           <Typography style={{ textAlign: 'center' }}>
-            Selecione uma Classe para ver suas características
+            Selecione um Antecedente para ver suas características
           </Typography>
         )}
       </DialogContent>
@@ -197,14 +173,13 @@ export const SelectClassDialog: React.FC<SelectClassDialogProps> = ({
         <Button
           fullWidth
           disableElevation
-          disabled={!selectedClass || !isValidSubmit}
+          disabled={!selectedBackground || !isValidSubmit}
           variant="contained"
           onClick={() => {
-            setFieldValue('class', {
-              type: classSummary?.type,
-              name: classSummary?.name,
-              features: selectedClassFeatures,
-              playerChoices: selectedClassPlayerChoices,
+            setFieldValue('background', {
+              type: backgroundSummary?.type,
+              name: backgroundSummary?.name,
+              playerChoices: selectedBackgroundPlayerChoices,
             })
             onClose()
           }}

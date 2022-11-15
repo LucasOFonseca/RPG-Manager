@@ -1,6 +1,4 @@
-import { ClassType } from './classSummary'
-import { PlayerChoices } from './playerChoice'
-import { RaceType } from './raceSummary'
+import { BackgroundType, ClassType, PlayerChoices, RaceType } from '.'
 
 export interface CharacterRace {
   type: RaceType
@@ -25,9 +23,16 @@ export interface CharacterClass {
   playerChoices?: PlayerChoices
 }
 
+export interface CharacterBackground {
+  type: BackgroundType
+  name: string
+  playerChoices?: PlayerChoices
+}
+
 export interface Character {
   name: string
   race?: CharacterRace
   subRace?: CharacterSubRace
   class?: CharacterClass
+  background?: CharacterBackground
 }

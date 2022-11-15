@@ -12,8 +12,9 @@ export enum WeaponType {
 }
 
 export interface Proficiencies {
-  armors: ArmorType[]
-  weapons: WeaponType[]
-  savingThrows: AbilityType[]
+  armors?: ArmorType[]
+  weapons?: WeaponType[]
+  savingThrows?: AbilityType[]
   skills?: Skill[]
+  tools?: string
 }

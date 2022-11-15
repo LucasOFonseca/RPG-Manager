@@ -2,6 +2,7 @@ import { Box, TextField } from '@mui/material'
 import { FormikProps } from 'formik'
 import { useState } from 'react'
 import { Character } from '../../../../../../shared/models'
+import { SelectBackgroundDialog } from './components/SelectBackgroundDialog'
 import { SelectClassDialog } from './components/SelectClassDialog'
 import { SelectRaceDialog } from './components/SelectRaceDialog'
 
@@ -14,6 +15,8 @@ export const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ formik }) => {
 
   const [showSelectRaceDialog, setShowSelectRaceDialog] = useState(false)
   const [showSelectClassDialog, setShowSelectClassDialog] = useState(false)
+  const [showSelectBackgroundDialog, setShowSelectBackgroundDialog] =
+    useState(false)
 
   const handleOpenSelectRaceDialog = () => {
     setShowSelectRaceDialog(true)
@@ -31,12 +34,27 @@ export const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ formik }) => {
     setShowSelectClassDialog(false)
   }
 
+  const handleOpenSelectBackgroundDialog = () => {
+    setShowSelectBackgroundDialog(true)
+  }
+
+  const handleCloseSelectBackgroundDialog = () => {
+    setShowSelectBackgroundDialog(false)
+  }
+
   return (
     <>
       {showSelectRaceDialog && (
         <SelectRaceDialog
           formik={formik}
           onClose={handleCloseSelectRaceDialog}
+        />
+      )}
+
+      {showSelectBackgroundDialog && (
+        <SelectBackgroundDialog
+          formik={formik}
+          onClose={handleCloseSelectBackgroundDialog}
         />
       )}
 
@@ -73,7 +91,13 @@ export const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ formik }) => {
           onClick={handleOpenSelectClassDialog}
         />
 
-        <TextField fullWidth variant="outlined" label="Antecedente" />
+        <TextField
+          fullWidth
+          variant="outlined"
+          label="Antecedente"
+          value={values.background?.name ?? ''}
+          onClick={handleOpenSelectBackgroundDialog}
+        />
       </Box>
     </>
   )

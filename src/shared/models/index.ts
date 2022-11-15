@@ -1,4 +1,5 @@
 export * from './ability'
+export * from './backgroundSummary'
 export * from './character'
 export * from './classSummary'
 export * from './enemyType'
