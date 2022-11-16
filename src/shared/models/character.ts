@@ -1,4 +1,10 @@
-import { BackgroundType, ClassType, PlayerChoices, RaceType } from '.'
+import {
+  Abilities,
+  BackgroundType,
+  ClassType,
+  PlayerChoices,
+  RaceType,
+} from '.'
 
 export interface CharacterRace {
   type: RaceType
@@ -35,4 +41,5 @@ export interface Character {
   subRace?: CharacterSubRace
   class?: CharacterClass
   background?: CharacterBackground
+  abilities: Abilities
 }

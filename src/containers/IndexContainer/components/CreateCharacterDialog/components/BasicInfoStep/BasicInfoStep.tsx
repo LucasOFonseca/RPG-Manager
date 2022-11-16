@@ -68,6 +68,7 @@ export const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ formik }) => {
       <Box display="flex" flexDirection="column" gap={3}>
         <TextField
           fullWidth
+          required
           variant="outlined"
           label="Nome"
           name="name"
@@ -77,6 +78,7 @@ export const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ formik }) => {
 
         <TextField
           fullWidth
+          required
           variant="outlined"
           label="Raça"
           value={values.race?.name ?? ''}
@@ -85,6 +87,7 @@ export const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ formik }) => {
 
         <TextField
           fullWidth
+          required
           variant="outlined"
           label="Classe"
           value={values.class?.name ?? ''}
@@ -93,6 +96,7 @@ export const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ formik }) => {
 
         <TextField
           fullWidth
+          required
           variant="outlined"
           label="Antecedente"
           value={values.background?.name ?? ''}
