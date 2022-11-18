@@ -3,6 +3,7 @@ import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { useCharSheet } from '../../stores/useCharSheet'
 import { CreateCharacterDialog } from './components/CreateCharacterDialog'
+import { LevelProgressBar } from './components/LevelProgressBar'
 
 const Index: NextPage = () => {
   const { character, charClass, race } = useCharSheet()
@@ -33,6 +34,8 @@ const Index: NextPage = () => {
             </Box>
 
             <Divider />
+
+            <LevelProgressBar />
           </Box>
         </Box>
       ) : null}
