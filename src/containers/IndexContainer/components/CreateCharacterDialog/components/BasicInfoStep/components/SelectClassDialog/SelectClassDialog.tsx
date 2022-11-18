@@ -23,8 +23,8 @@ import { EquipmentSection } from '../../../../../../../../shared/components/Equi
 import { PlayerChoicesForm } from '../../../../../../../../shared/components/PlayerChoicesForm'
 import { ProficienciesSection } from '../../../../../../../../shared/components/ProficienciesSection'
 import {
-  Character,
   CharacterClassFeature,
+  CharacterForm,
   ClassType,
   PlayerChoices,
 } from '../../../../../../../../shared/models'
@@ -44,7 +44,7 @@ const DialogPaper = styled(Paper)(({ theme }) => ({
 }))
 
 interface SelectClassDialogProps {
-  formik: FormikProps<Character>
+  formik: FormikProps<CharacterForm>
   onClose: () => void
 }
 

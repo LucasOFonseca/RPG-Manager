@@ -23,7 +23,7 @@ import {
   makeRaceSummaries,
 } from '../../../../../../../../helpers/utils'
 import {
-  Character,
+  CharacterForm,
   CharacterSubRace,
   RaceType,
 } from '../../../../../../../../shared/models'
@@ -49,7 +49,7 @@ const RacialTraitsContainer = styled(Box)(() => ({
 }))
 
 interface SelectRaceDialogProps {
-  formik: FormikProps<Character>
+  formik: FormikProps<CharacterForm>
   onClose: () => void
 }
 

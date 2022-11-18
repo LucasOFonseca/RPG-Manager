@@ -1,13 +1,13 @@
 import { Box, TextField } from '@mui/material'
 import { FormikProps } from 'formik'
 import { useState } from 'react'
-import { Character } from '../../../../../../shared/models'
+import { CharacterForm } from '../../../../../../shared/models'
 import { SelectBackgroundDialog } from './components/SelectBackgroundDialog'
 import { SelectClassDialog } from './components/SelectClassDialog'
 import { SelectRaceDialog } from './components/SelectRaceDialog'
 
 interface BasicInfoStepProps {
-  formik: FormikProps<Character>
+  formik: FormikProps<CharacterForm>
 }
 
 export const BasicInfoStep: React.FC<BasicInfoStepProps> = ({ formik }) => {

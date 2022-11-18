@@ -37,7 +37,11 @@ export const ProficienciesSection: React.FC<ProficienciesSectionProps> = ({
           <Typography>
             <strong>Armas:</strong>{' '}
             {proficiencies.weapons
-              .map((weaponType) => getTranslatedWeaponType(weaponType))
+              .map((weaponType) =>
+                typeof weaponType === 'string'
+                  ? weaponType
+                  : getTranslatedWeaponType(weaponType)
+              )
               .join(' - ')}
           </Typography>
         )}

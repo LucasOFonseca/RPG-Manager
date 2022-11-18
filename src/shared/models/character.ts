@@ -1,45 +1,18 @@
-import {
-  Abilities,
-  BackgroundType,
-  ClassType,
-  PlayerChoices,
-  RaceType,
-} from '.'
+import { Abilities, CharacterProficiencies, Language } from '.'
 
-export interface CharacterRace {
-  type: RaceType
+export interface CharacterBasicInfo {
   name: string
-}
-
-export interface CharacterSubRace {
-  type: string
-  name: string
-  playerChoices?: PlayerChoices
-}
-
-export interface CharacterClassFeature {
-  title: string
-  playerChoices?: PlayerChoices
-}
-
-export interface CharacterClass {
-  type: ClassType
-  name: string
-  features: CharacterClassFeature[]
-  playerChoices?: PlayerChoices
-}
-
-export interface CharacterBackground {
-  type: BackgroundType
-  name: string
-  playerChoices?: PlayerChoices
+  baseMovement: number
+  languages: Language[]
 }
 
 export interface Character {
-  name: string
-  race?: CharacterRace
-  subRace?: CharacterSubRace
-  class?: CharacterClass
-  background?: CharacterBackground
+  basicInfo: CharacterBasicInfo
+  level: number
+  currentExperience: number
+  maxHitPoints: number
+  currentHitPoints: number
+  armorClass: number
   abilities: Abilities
+  proficiencies: CharacterProficiencies
 }

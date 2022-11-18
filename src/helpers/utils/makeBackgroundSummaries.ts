@@ -29,11 +29,11 @@ export const makeBackgroundSummaries = (): ClassSummaries => ({
     ],
     proficiencies: {
       skills: [Skill.athletics, Skill.survival],
-      tools: 'Um tipo de instrumento musical',
     },
     playerChoices: {
       tools: {
         type: PlayerChoiceType.tools,
+        label: 'Instrumento musical',
       },
       languages: {
         type: PlayerChoiceType.languages,

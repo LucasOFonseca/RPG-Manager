@@ -13,8 +13,12 @@ export enum WeaponType {
 
 export interface Proficiencies {
   armors?: ArmorType[]
-  weapons?: WeaponType[]
+  weapons?: Array<WeaponType | string>
   savingThrows?: AbilityType[]
   skills?: Skill[]
-  tools?: string
+  tools?: string[]
+}
+
+export interface CharacterProficiencies extends Proficiencies {
+  bonus: number
 }

@@ -1,42 +1,19 @@
 import { Box, TextField, Typography } from '@mui/material'
 import { FormikProps } from 'formik'
-import { makeRaceSummaries } from '../../../../../../helpers/utils'
-import { Character } from '../../../../../../shared/models'
+import { getAbilityEnhancements } from '../../../../../../helpers/utils'
+import { CharacterForm, RaceType } from '../../../../../../shared/models'
 
 interface AbilitiesStepProps {
-  formik: FormikProps<Character>
+  formik: FormikProps<CharacterForm>
 }
 
 export const AbilitiesStep: React.FC<AbilitiesStepProps> = ({ formik }) => {
   const { values, setFieldValue } = formik
 
-  const getAbilityEnhancements = () => {
-    const race = makeRaceSummaries()[values.race?.type ?? '']
-    const subRace =
-      values.subRace && race.subRaces
-        ? race.subRaces.find((subRace) => subRace.type === values.subRace?.type)
-        : undefined
-
-    const { abilityEnhancements } = race.racialTraits
-
-    const raceValues = abilityEnhancements.reduce(
-      (a, v) => ({ ...a, [v.ability]: v.value }),
-      {}
-    )
-
-    if (subRace) {
-      const subRaceValues = subRace.abilityEnhancements.reduce(
-        (a, v) => ({ ...a, [v.ability]: v.value }),
-        {}
-      )
-
-      return { ...raceValues, ...subRaceValues }
-    }
-
-    return raceValues
-  }
-
-  const enhancements = getAbilityEnhancements() as any
+  const enhancements = getAbilityEnhancements(
+    values.race?.type ?? ('' as RaceType),
+    values.subRace?.type
+  )
 
   return (
     <>

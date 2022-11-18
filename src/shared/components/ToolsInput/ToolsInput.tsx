@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 interface ToolsInputProps {
   initialValues?: string[]
   quantity?: number
+  label?: string
   onChange: (values: string[]) => void
   handleValidate: (isValid: boolean) => void
 }
@@ -11,6 +12,7 @@ interface ToolsInputProps {
 export const ToolsInput: React.FC<ToolsInputProps> = ({
   initialValues,
   quantity,
+  label,
   onChange,
   handleValidate,
 }) => {
@@ -30,13 +32,13 @@ export const ToolsInput: React.FC<ToolsInputProps> = ({
     <TextField
       fullWidth
       variant="outlined"
-      label="Ferramenta"
+      label={label ?? 'Ferramenta'}
       value={value ?? ''}
       onChange={({ target }) => {
         onChangeDebounce([target.value])
         setValue(target.value)
       }}
-      helperText="(Consulte o mestre para saber quais podem ser escolhidas)"
+      helperText="(Consulte o mestre para saber quais estão disponíveis para escolha)"
     />
   )
 }

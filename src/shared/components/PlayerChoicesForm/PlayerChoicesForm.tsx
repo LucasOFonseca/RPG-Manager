@@ -81,6 +81,7 @@ export const PlayerChoicesForm: React.FC<PlayerChoicesFormProps> = ({
               key={field.type}
               initialValues={playerChoices?.[field.type as string]}
               quantity={field.quantity}
+              label={field.label}
               values={field.values}
               onChange={(values: any[]) => handleChange(values, field.type)}
               handleValidate={(isValid: boolean) =>

@@ -16,6 +16,7 @@ export interface PlayerChoiceFormProps<T> {
   optional?: boolean
   type: PlayerChoiceType
   quantity?: number
+  label?: string
   values?: T[]
 }
 

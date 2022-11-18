@@ -23,7 +23,7 @@ import { PlayerChoicesForm } from '../../../../../../../../shared/components/Pla
 import { ProficienciesSection } from '../../../../../../../../shared/components/ProficienciesSection'
 import {
   BackgroundType,
-  Character,
+  CharacterForm,
   PlayerChoices,
 } from '../../../../../../../../shared/models'
 
@@ -41,7 +41,7 @@ const DialogPaper = styled(Paper)(({ theme }) => ({
 }))
 
 interface SelectBackgroundDialogProps {
-  formik: FormikProps<Character>
+  formik: FormikProps<CharacterForm>
   onClose: () => void
 }
 

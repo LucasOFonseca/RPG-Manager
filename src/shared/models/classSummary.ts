@@ -1,24 +1,14 @@
-import { PlayerChoicesFormProps } from '.'
+import { Benefit, PlayerChoicesFormProps } from '.'
 import { Proficiencies } from './proficiency'
 
 export enum ClassType {
   ranger = 'ranger',
 }
 
-export enum BenefitType {
-  item = 'item',
-  description = 'description',
-}
-
-export interface BenefitSummary {
-  type: BenefitType
-  text: string
-}
-
 export interface ClassFeatureSummary {
   title: string
   description: string | string[]
-  benefits: BenefitSummary[]
+  benefits: Benefit[]
   playerChoices?: PlayerChoicesFormProps
 }
 

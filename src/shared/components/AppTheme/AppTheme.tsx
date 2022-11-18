@@ -24,6 +24,13 @@ export const AppTheme: React.FC<AppThemeProps> = ({ children }) => {
           },
         },
       },
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+            color: prefersDarkMode ? '#fff' : undefined,
+          },
+        },
+      },
     },
   })
 
