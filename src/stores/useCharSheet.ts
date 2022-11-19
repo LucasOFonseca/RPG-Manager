@@ -17,16 +17,25 @@ interface UseCharSheetState {
   character?: Character
   race?: RaceState
   charClass?: Class
+  resetCharSheet: () => void
   setCharacter: (character: Character) => void
   setRace: (race: RaceState) => void
   setClass: (charClass: Class) => void
   setExperience: (value: number) => void
+  setCurrentHitPoints: (value: number) => void
   changeLevel: () => void
 }
 
 export const useCharSheet = create(
   persist<UseCharSheetState>(
     (set, get) => ({
+      resetCharSheet: () => {
+        set({
+          character: undefined,
+          race: undefined,
+          charClass: undefined,
+        })
+      },
       setCharacter: (character) => set({ character }),
       setRace: (race) => set({ race }),
       setClass: (charClass) => set({ charClass }),
@@ -38,6 +47,18 @@ export const useCharSheet = create(
             character: {
               ...char,
               currentExperience: value,
+            },
+          })
+        }
+      },
+      setCurrentHitPoints: (value) => {
+        const char = get().character
+
+        if (char) {
+          set({
+            character: {
+              ...char,
+              currentHitPoints: value < 0 ? 0 : value,
             },
           })
         }

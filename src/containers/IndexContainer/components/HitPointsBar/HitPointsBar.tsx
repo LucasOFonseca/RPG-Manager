@@ -1,11 +1,10 @@
 import { Box, LinearProgress, Menu, styled, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
-import useSound from 'use-sound'
 import { ChangeQuantityInput } from '../../../../shared/components/ChangeQuantityInput'
 import { useCharSheet } from '../../../../stores/useCharSheet'
+import { DeathResistanceDialog } from './components/DeathResistanceDialog'
 
 const Root = styled(Box)(() => ({
-  marginTop: 8,
   padding: '8px 4px',
   borderRadius: 4,
   transition: 'all .2s',
@@ -16,12 +15,14 @@ const Root = styled(Box)(() => ({
   },
 }))
 
-const XpBar = styled(LinearProgress)(() => ({
-  backgroundColor: '#2B2E30',
-  borderRadius: 2,
+const HpBar = styled(LinearProgress)(() => ({
+  height: 18,
+  backgroundColor: '#292E2A',
+  border: '2px solid #292E2A',
+  borderRadius: 4,
 
   '& .MuiLinearProgress-bar': {
-    backgroundColor: '#5297C9',
+    backgroundColor: '#53B462',
     borderRadius: 2,
   },
 }))
@@ -56,42 +57,20 @@ const StyledMenu = styled(Menu)(({ theme }) => ({
   },
 }))
 
-export const LevelProgressBar: React.FC = () => {
-  const [play] = useSound('/audios/level_up.ogg', { volume: 1 })
-  const { character, setExperience, changeLevel } = useCharSheet()
+export const HitPointsBar: React.FC = () => {
+  const { character, setCurrentHitPoints } = useCharSheet()
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [showDeathResistanceDialog, setShowDeathResistanceDialog] =
+    useState(false)
 
-  const levels: { [key: number]: number } = {
-    1: 300,
-    2: 900,
-    3: 2700,
-    4: 6500,
-    5: 14000,
-    6: 23000,
-    7: 34000,
-    8: 48000,
-    9: 64000,
-    10: 85000,
-    11: 100000,
-    12: 120000,
-    13: 140000,
-    14: 165000,
-    15: 195000,
-    16: 225000,
-    17: 265000,
-    18: 305000,
-    19: 355000,
+  const handleOpenDeathResistanceDialog = () => {
+    setShowDeathResistanceDialog(true)
   }
 
-  const normalize = (value: number): number =>
-    (((character?.level ?? 1) > 1
-      ? value - levels[(character?.level ?? 1) - 1]
-      : value) *
-      100) /
-    ((character?.level ?? 1) > 1
-      ? levels[character?.level ?? 1] - levels[(character?.level ?? 1) - 1]
-      : levels[character?.level ?? 1])
+  const handleCloseDeathResistanceDialog = () => {
+    setShowDeathResistanceDialog(false)
+  }
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -101,31 +80,41 @@ export const LevelProgressBar: React.FC = () => {
     setAnchorEl(null)
   }
 
-  useEffect(() => {
-    if ((character?.currentExperience ?? 0) >= levels[character?.level ?? 1]) {
-      play()
-      changeLevel()
+  const normalize = (value: number): number => {
+    const normalizedValue = (value * 100) / (character?.maxHitPoints ?? 1)
+
+    if (normalizedValue > 100) {
+      return 100
     }
-  }, [character?.currentExperience, character?.level]) // eslint-disable-line
+
+    return normalizedValue
+  }
+  useEffect(() => {
+    if (character?.currentHitPoints === 0) {
+      handleOpenDeathResistanceDialog()
+    }
+  }, [character?.currentHitPoints]) // eslint-disable-line
 
   return (
     <>
+      <DeathResistanceDialog
+        open={showDeathResistanceDialog}
+        onClose={handleCloseDeathResistanceDialog}
+      />
+
       <Root onClick={handleClick}>
-        <XpBar
+        <Typography style={{ fontSize: '.875rem', fontWeight: 700 }}>
+          HP
+        </Typography>
+
+        <HpBar
           variant="determinate"
-          value={normalize(character?.currentExperience ?? 0)}
+          value={normalize(character?.currentHitPoints ?? 0)}
         />
 
-        <Box mt={1} display="flex" justifyContent="space-between">
-          <Typography style={{ fontSize: '.75rem' }}>
-            NVL. {character?.level}
-          </Typography>
-
-          <Typography style={{ fontSize: '.75rem' }}>
-            XP{' '}
-            {`${character?.currentExperience}/${levels[character?.level ?? 1]}`}
-          </Typography>
-        </Box>
+        <Typography style={{ fontSize: '.75rem', marginTop: 8 }}>
+          {character?.currentHitPoints}/{character?.maxHitPoints}
+        </Typography>
       </Root>
 
       <StyledMenu
@@ -136,9 +125,8 @@ export const LevelProgressBar: React.FC = () => {
         anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
       >
         <ChangeQuantityInput
-          disableSubtract
-          currentValue={character?.currentExperience ?? 0}
-          onChange={setExperience}
+          currentValue={character?.currentHitPoints ?? 0}
+          onChange={setCurrentHitPoints}
         />
       </StyledMenu>
     </>
