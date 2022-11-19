@@ -2,6 +2,7 @@ import { Box, Divider, Typography } from '@mui/material'
 import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { useCharSheet } from '../../stores/useCharSheet'
+import { BasicInfoSection } from './components/BasicInfoSection'
 import { CreateCharacterDialog } from './components/CreateCharacterDialog'
 import { HitPointsBar } from './components/HitPointsBar'
 import { LevelProgressBar } from './components/LevelProgressBar'
@@ -39,6 +40,8 @@ const Index: NextPage = () => {
             <LevelProgressBar />
 
             <HitPointsBar />
+
+            <BasicInfoSection />
           </Box>
         </Box>
       ) : null}
