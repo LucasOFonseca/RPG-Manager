@@ -1,6 +1,6 @@
-import { Box, Divider, Typography } from '@mui/material'
-import { getTranslatedLanguage } from '../../../../helpers/utils'
-import { useCharSheet } from '../../../../stores/useCharSheet'
+import { Box, Divider, Typography } from '@mui/material';
+import { getTranslatedLanguage } from '../../../../helpers/utils';
+import { useCharSheet } from '../../../../stores/useCharSheet';
 
 export const BasicInfoSection: React.FC = () => {
   const { character } = useCharSheet()
@@ -13,6 +13,7 @@ export const BasicInfoSection: React.FC = () => {
       >
         Informações Básicas
       </Typography>
+      
       <Divider />
 
       <Box mt={1}>

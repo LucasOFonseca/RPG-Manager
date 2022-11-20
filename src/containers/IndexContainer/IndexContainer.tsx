@@ -2,6 +2,7 @@ import { Box, Divider, Typography } from '@mui/material'
 import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { useCharSheet } from '../../stores/useCharSheet'
+import { AbilitiesSection } from './components/AbilitiesSection'
 import { ArmorClassIndicator } from './components/ArmorClassIndicator'
 import { BasicInfoSection } from './components/BasicInfoSection'
 import { CreateCharacterDialog } from './components/CreateCharacterDialog'
@@ -50,6 +51,8 @@ const Index: NextPage = () => {
 
               <ArmorClassIndicator />
             </Box>
+
+            <AbilitiesSection />
 
             <BasicInfoSection />
           </Box>
