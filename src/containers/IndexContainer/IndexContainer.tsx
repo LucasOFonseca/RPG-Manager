@@ -8,6 +8,7 @@ import { BasicInfoSection } from './components/BasicInfoSection'
 import { CreateCharacterDialog } from './components/CreateCharacterDialog'
 import { HitPointsBar } from './components/HitPointsBar'
 import { LevelProgressBar } from './components/LevelProgressBar'
+import { ProficienciesSection } from './components/ProficienciesSection'
 
 const Index: NextPage = () => {
   const { character, charClass, race } = useCharSheet()
@@ -55,6 +56,8 @@ const Index: NextPage = () => {
             <AbilitiesSection />
 
             <BasicInfoSection />
+
+            <ProficienciesSection />
           </Box>
         </Box>
       ) : null}
