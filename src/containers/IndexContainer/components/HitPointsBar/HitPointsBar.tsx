@@ -5,6 +5,7 @@ import { useCharSheet } from '../../../../stores/useCharSheet'
 import { DeathResistanceDialog } from './components/DeathResistanceDialog'
 
 const Root = styled(Box)(() => ({
+  width: '100%',
   padding: '8px 4px',
   borderRadius: 4,
   transition: 'all .2s',

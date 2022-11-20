@@ -2,6 +2,7 @@ import { Box, Divider, Typography } from '@mui/material'
 import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { useCharSheet } from '../../stores/useCharSheet'
+import { ArmorClassIndicator } from './components/ArmorClassIndicator'
 import { BasicInfoSection } from './components/BasicInfoSection'
 import { CreateCharacterDialog } from './components/CreateCharacterDialog'
 import { HitPointsBar } from './components/HitPointsBar'
@@ -39,7 +40,16 @@ const Index: NextPage = () => {
 
             <LevelProgressBar />
 
-            <HitPointsBar />
+            <Box
+              mt={1}
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <HitPointsBar />
+
+              <ArmorClassIndicator />
+            </Box>
 
             <BasicInfoSection />
           </Box>
