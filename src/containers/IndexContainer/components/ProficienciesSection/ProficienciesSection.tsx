@@ -53,6 +53,13 @@ export const ProficienciesSection: React.FC = () => {
         </Typography>
       )}
 
+      {character?.proficiencies.tools && (
+        <Typography style={{ marginTop: 8 }}>
+          <strong>Armas:</strong>{' '}
+          {character?.proficiencies.tools.map((tool) => tool).join(' - ')}
+        </Typography>
+      )}
+
       {character?.proficiencies.savingThrows && (
         <Typography style={{ marginTop: 8 }}>
           <strong>Testes de resistência:</strong>{' '}
