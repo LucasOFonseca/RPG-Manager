@@ -5,6 +5,7 @@ import { useCharSheet } from '../../stores/useCharSheet'
 import { AbilitiesSection } from './components/AbilitiesSection'
 import { ArmorClassIndicator } from './components/ArmorClassIndicator'
 import { BasicInfoSection } from './components/BasicInfoSection'
+import { ClassFeaturesSection } from './components/ClassFeaturesSection'
 import { CreateCharacterDialog } from './components/CreateCharacterDialog'
 import { HitPointsBar } from './components/HitPointsBar'
 import { LevelProgressBar } from './components/LevelProgressBar'
@@ -61,6 +62,8 @@ const Index: NextPage = () => {
             <RacialTraitsSection />
 
             <ProficienciesSection />
+
+            <ClassFeaturesSection />
           </Box>
         </Box>
       ) : null}

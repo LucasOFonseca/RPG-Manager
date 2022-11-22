@@ -14,6 +14,7 @@ import {
   calculateAbilityModifier,
   getAbilityEnhancements,
   getAllProficiencies,
+  getTranslatedEnemyType,
   makeBackgroundSummaries,
   makeClasses,
   makeClassSummaries,
@@ -97,7 +98,9 @@ export const CreateCharacterDialog: React.FC<CreateCharacterDialogProps> = ({
           delete featPlayerChoices.languages
 
           if (featPlayerChoices.enemyType && feat.valuesToShow) {
-            feat.valuesToShow.enemy.values = featPlayerChoices.enemyType
+            feat.valuesToShow.enemy.values = featPlayerChoices.enemyType.map(
+              (enemyType) => getTranslatedEnemyType(enemyType)
+            )
           }
         }
 
