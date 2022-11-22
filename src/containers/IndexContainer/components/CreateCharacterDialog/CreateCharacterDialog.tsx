@@ -95,8 +95,6 @@ export const CreateCharacterDialog: React.FC<CreateCharacterDialogProps> = ({
         const featPlayerChoices = values.class?.features?.[index].playerChoices
 
         if (featPlayerChoices) {
-          delete featPlayerChoices.languages
-
           if (featPlayerChoices.enemyType && feat.valuesToShow) {
             feat.valuesToShow.enemy.values = featPlayerChoices.enemyType.map(
               (enemyType) => getTranslatedEnemyType(enemyType)
@@ -118,7 +116,7 @@ export const CreateCharacterDialog: React.FC<CreateCharacterDialogProps> = ({
           (feature) => feature.playerChoices?.languages
         ) ?? []),
         ...(values.subRace?.playerChoices?.languages ?? []),
-      ]
+      ].filter((language) => !!language)
 
       const enhancements = getAbilityEnhancements(
         values.race?.type ?? ('' as RaceType),

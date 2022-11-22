@@ -71,14 +71,16 @@ export const SubRaceCard: React.FC<SubRaceCardProps> = ({
         <Collapse unmountOnExit in={selected}>
           <Divider />
 
-          <Box padding={1} display="flex" flexDirection="column" gap={2}>
-            <PlayerChoicesForm
-              playerChoices={playerChoices}
-              fields={subRace.playerChoices}
-              handleChangeIsValidSubmit={handleChangeIsValidSubmit}
-              handleChangePlayerChoices={handleChangePlayerChoices}
-            />
-          </Box>
+          {selected && (
+            <Box padding={1} display="flex" flexDirection="column" gap={2}>
+              <PlayerChoicesForm
+                playerChoices={playerChoices}
+                fields={subRace.playerChoices}
+                handleChangeIsValidSubmit={handleChangeIsValidSubmit}
+                handleChangePlayerChoices={handleChangePlayerChoices}
+              />
+            </Box>
+          )}
         </Collapse>
       )}
     </Card>
