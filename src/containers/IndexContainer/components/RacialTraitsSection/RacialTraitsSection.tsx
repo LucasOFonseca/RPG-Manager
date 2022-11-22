@@ -17,7 +17,7 @@ export const RacialTraitsSection: React.FC = () => {
 
       <Box mt={1} display="flex" flexDirection="column" gap={1}>
         {race?.traits.map((trait) => (
-          <Typography>
+          <Typography key={trait.title}>
             <strong>{trait.title}:</strong> {trait.description}
           </Typography>
         ))}
