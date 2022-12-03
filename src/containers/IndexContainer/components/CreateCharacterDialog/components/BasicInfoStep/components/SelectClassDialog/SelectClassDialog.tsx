@@ -107,6 +107,7 @@ export const SelectClassDialog: React.FC<SelectClassDialogProps> = ({
             }}
           >
             <MenuItem value={ClassType.ranger}>Patrulheiro</MenuItem>
+            <MenuItem value={ClassType.rogue}>Ladino</MenuItem>
           </Select>
         </FormControl>
       </Box>
@@ -149,7 +150,9 @@ export const SelectClassDialog: React.FC<SelectClassDialogProps> = ({
                 <React.Fragment key={feature.title}>
                   <ClassFeature
                     feature={feature}
-                    playerChoices={selectedClassFeatures?.[index].playerChoices}
+                    playerChoices={
+                      selectedClassFeatures?.[index]?.playerChoices
+                    }
                     handleChangeIsValidSubmit={(isValid) =>
                       setIsValidSubmit(isValid)
                     }

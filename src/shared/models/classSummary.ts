@@ -3,6 +3,7 @@ import { Proficiencies } from './proficiency'
 
 export enum ClassType {
   ranger = 'ranger',
+  rogue = 'rogue',
 }
 
 export interface ClassFeatureSummary {

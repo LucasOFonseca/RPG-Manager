@@ -15,6 +15,7 @@ import {
   getAbilityEnhancements,
   getAllProficiencies,
   getTranslatedEnemyType,
+  getTranslatedSkill,
   makeBackgroundSummaries,
   makeClasses,
   makeClassSummaries,
@@ -99,6 +100,10 @@ export const CreateCharacterDialog: React.FC<CreateCharacterDialogProps> = ({
           if (featPlayerChoices.enemyType && feat.valuesToShow) {
             feat.valuesToShow.enemy.values = featPlayerChoices.enemyType.map(
               (enemyType) => getTranslatedEnemyType(enemyType)
+            )
+          } else if (featPlayerChoices.skills && feat.valuesToShow) {
+            feat.valuesToShow.skill.values = featPlayerChoices.skills.map(
+              (skill) => getTranslatedSkill(skill)
             )
           }
         }
