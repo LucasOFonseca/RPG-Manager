@@ -57,4 +57,9 @@ export const makeRaces = (): Races => ({
       },
     },
   },
+  human: {
+    name: 'Humano',
+    baseMovement: 9,
+    languages: [Language.common],
+  },
 })

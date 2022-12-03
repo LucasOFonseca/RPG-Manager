@@ -111,6 +111,7 @@ export const CreateCharacterDialog: React.FC<CreateCharacterDialogProps> = ({
         : race.baseMovement
       valuesToUse.basicInfo.languages = [
         ...race.languages,
+        ...(values.race?.playerChoices?.languages ?? []),
         ...(values.background?.playerChoices?.languages ?? []),
         ...(values.class?.playerChoices?.languages ?? []),
         ...(values.class?.features.map(
@@ -180,7 +181,7 @@ export const CreateCharacterDialog: React.FC<CreateCharacterDialogProps> = ({
         type: values.race?.type ?? ('' as RaceType),
         name: subRace ? subRace.name : race.name,
         traits: subRace?.traits
-          ? [...race.traits, ...subRace.traits]
+          ? [...(race.traits ?? []), ...subRace.traits]
           : race.traits,
       })
       setClass(charClass)

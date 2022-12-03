@@ -11,7 +11,7 @@ export interface Race {
   name: string
   languages: Language[]
   baseMovement: number
-  proficiencies: Proficiencies
+  proficiencies?: Proficiencies
   subRaces?: { [key: string]: SubRace }
-  traits: GenericDescriptionItem[]
+  traits?: GenericDescriptionItem[]
 }

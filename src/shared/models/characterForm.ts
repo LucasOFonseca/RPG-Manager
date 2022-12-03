@@ -9,6 +9,7 @@ import {
 export interface CharacterRace {
   type: RaceType
   name: string
+  playerChoices?: PlayerChoices
 }
 
 export interface CharacterSubRace {

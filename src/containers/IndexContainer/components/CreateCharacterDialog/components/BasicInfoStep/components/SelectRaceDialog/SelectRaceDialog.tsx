@@ -22,9 +22,11 @@ import {
   getTranslatedLanguage,
   makeRaceSummaries,
 } from '../../../../../../../../helpers/utils'
+import { PlayerChoicesForm } from '../../../../../../../../shared/components/PlayerChoicesForm'
 import {
   CharacterForm,
   CharacterSubRace,
+  PlayerChoices,
   RaceType,
 } from '../../../../../../../../shared/models'
 import { SubRaceCard } from './components/SubRaceCard'
@@ -62,6 +64,9 @@ export const SelectRaceDialog: React.FC<SelectRaceDialogProps> = ({
   const [selectedRace, setSelectedRace] = useState<RaceType | undefined>(
     values.race?.type
   )
+  const [racePlayerChoices, setRacePlayerChoices] = useState<
+    PlayerChoices | undefined
+  >(values.race?.playerChoices)
   const [selectedSubRace, setSelectedSubRace] = useState<
     CharacterSubRace | undefined
   >(values.subRace)
@@ -99,6 +104,7 @@ export const SelectRaceDialog: React.FC<SelectRaceDialogProps> = ({
             onChange={({ target }) => setSelectedRace(target.value as RaceType)}
           >
             <MenuItem value={RaceType.elf}>Elfo</MenuItem>
+            <MenuItem value={RaceType.human}>Humano</MenuItem>
           </Select>
         </FormControl>
       </Box>
@@ -173,6 +179,21 @@ export const SelectRaceDialog: React.FC<SelectRaceDialogProps> = ({
               </RacialTraitsContainer>
             </Box>
 
+            {raceSummary.playerChoices && (
+              <Box mt={3}>
+                <PlayerChoicesForm
+                  playerChoices={racePlayerChoices}
+                  fields={raceSummary.playerChoices}
+                  handleChangeIsValidSubmit={(isValid) =>
+                    setIsValidSubmit(isValid)
+                  }
+                  handleChangePlayerChoices={(value) =>
+                    setRacePlayerChoices(value)
+                  }
+                />
+              </Box>
+            )}
+
             {raceSummary.subRaces && (
               <>
                 <Typography
@@ -242,6 +263,7 @@ export const SelectRaceDialog: React.FC<SelectRaceDialogProps> = ({
             setFieldValue('race', {
               type: raceSummary?.type,
               name: raceSummary?.name,
+              playerChoices: racePlayerChoices,
             })
             setFieldValue('subRace', selectedSubRace)
             onClose()

@@ -1,42 +1,42 @@
 import { PlayerChoices, Proficiencies } from '../../shared/models'
 
 export const getAllProficiencies = (
-  raceProficiencies: Proficiencies,
+  raceProficiencies?: Proficiencies,
   subRaceProficiencies?: Proficiencies,
   classProficiencies?: Proficiencies,
   backgroundProficiencies?: Proficiencies,
   playerChoices?: PlayerChoices
 ): Proficiencies => {
   const armors = [
-    ...(raceProficiencies.armors ?? []),
+    ...(raceProficiencies?.armors ?? []),
     ...(subRaceProficiencies?.armors ?? []),
     ...(classProficiencies?.armors ?? []),
     ...(backgroundProficiencies?.armors ?? []),
     ...(playerChoices?.armors ?? []),
   ]
   const savingThrows = [
-    ...(raceProficiencies.savingThrows ?? []),
+    ...(raceProficiencies?.savingThrows ?? []),
     ...(subRaceProficiencies?.savingThrows ?? []),
     ...(classProficiencies?.savingThrows ?? []),
     ...(backgroundProficiencies?.savingThrows ?? []),
     ...(playerChoices?.savingThrows ?? []),
   ]
   const skills = [
-    ...(raceProficiencies.skills ?? []),
+    ...(raceProficiencies?.skills ?? []),
     ...(subRaceProficiencies?.skills ?? []),
     ...(classProficiencies?.skills ?? []),
     ...(backgroundProficiencies?.skills ?? []),
     ...(playerChoices?.skills ?? []),
   ]
   const tools = [
-    ...(raceProficiencies.tools ?? []),
+    ...(raceProficiencies?.tools ?? []),
     ...(subRaceProficiencies?.tools ?? []),
     ...(classProficiencies?.tools ?? []),
     ...(backgroundProficiencies?.tools ?? []),
     ...(playerChoices?.tools ?? []),
   ]
   const weapons = [
-    ...(raceProficiencies.weapons ?? []),
+    ...(raceProficiencies?.weapons ?? []),
     ...(subRaceProficiencies?.weapons ?? []),
     ...(classProficiencies?.weapons ?? []),
     ...(backgroundProficiencies?.weapons ?? []),

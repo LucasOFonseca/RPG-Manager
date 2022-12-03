@@ -7,6 +7,7 @@ import {
 
 export enum RaceType {
   elf = 'elf',
+  human = 'human',
 }
 
 export interface AbilityEnhancementItem {
@@ -37,4 +38,5 @@ export interface RaceSummary {
   summary: string | string[]
   racialTraits: RacialTraits
   subRaces?: SubRaceSummary[]
+  playerChoices?: PlayerChoicesFormProps
 }

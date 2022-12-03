@@ -125,4 +125,42 @@ export const makeRaceSummaries = (): RaceSummaries => ({
       },
     ],
   },
+  human: {
+    type: RaceType.human,
+    name: 'Humano',
+    summary:
+      'Nos confins da maioria dos mundos, os humanos são a mais jovem das raças comuns, se comparados aos anões, elfos e dragões. Talvez seja por causa de suas vidas mais curtas que eles se esforçam para alcançar o máximo que podem nos anos que têm.',
+    racialTraits: {
+      physicalDescription:
+        'Não há um humano típico. Um indivíduo pode ter entre 1,65 metro a 1,90 metro de altura e pesar entre 62,5 kg e 125 kg.',
+      ageDescription:
+        'Atingem a idade adulta no fim da adolescência e vivem menos de um século.',
+      languages: [Language.common],
+      baseMovement: 9,
+      abilityEnhancements: [
+        { ability: AbilityType.charisma, value: 1 },
+        { ability: AbilityType.constitution, value: 1 },
+        { ability: AbilityType.dexterity, value: 1 },
+        { ability: AbilityType.intelligence, value: 1 },
+        { ability: AbilityType.strength, value: 1 },
+        { ability: AbilityType.wisdom, value: 1 },
+      ],
+    },
+    playerChoices: {
+      languages: {
+        type: PlayerChoiceType.languages,
+        values: [
+          Language.draconic,
+          Language.dwarvish,
+          Language.elvish,
+          Language.giant,
+          Language.gnomish,
+          Language.goblin,
+          Language.halfling,
+          Language.infernal,
+          Language.orc,
+        ],
+      },
+    },
+  },
 })

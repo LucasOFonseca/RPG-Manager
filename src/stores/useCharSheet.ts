@@ -10,7 +10,7 @@ import {
 interface RaceState {
   type: RaceType
   name: string
-  traits: GenericDescriptionItem[]
+  traits?: GenericDescriptionItem[]
 }
 
 interface UseCharSheetState {
