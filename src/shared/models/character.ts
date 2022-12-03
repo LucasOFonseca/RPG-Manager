@@ -12,7 +12,7 @@ export interface Character {
   currentExperience: number
   maxHitPoints: number
   currentHitPoints: number
-  armorClass: number
+  acBonusWithArmor?: number
   abilities: Abilities
   proficiencies: CharacterProficiencies
 }

@@ -15,6 +15,12 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "declarations.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "declarations.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/containers/IndexContainer/components/LevelUpDialog/components/IncrementAbilityValuesStep/IncrementAbilityValuesStep"
+  ],
   "exclude": ["node_modules"]
 }

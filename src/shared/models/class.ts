@@ -1,3 +1,5 @@
+import { ClassType } from './classSummary'
+
 export enum BenefitType {
   item = 'item',
   description = 'description',
@@ -21,6 +23,7 @@ export interface ClassFeature {
 
 export interface Class {
   name: string
+  type: ClassType
   spellcasting?: boolean
   hitDie: number
   features: ClassFeature[]

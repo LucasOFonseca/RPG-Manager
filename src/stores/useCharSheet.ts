@@ -17,12 +17,15 @@ interface UseCharSheetState {
   character?: Character
   race?: RaceState
   charClass?: Class
+  onLevelUp?: boolean
+  resetOnLevelUp: () => void
   resetCharSheet: () => void
   setCharacter: (character: Character) => void
   setRace: (race: RaceState) => void
   setClass: (charClass: Class) => void
   setExperience: (value: number) => void
   setCurrentHitPoints: (value: number) => void
+  setMaxHitPoints: (value: number) => void
   changeLevel: () => void
 }
 
@@ -63,6 +66,18 @@ export const useCharSheet = create(
           })
         }
       },
+      setMaxHitPoints: (value) => {
+        const char = get().character
+
+        if (char) {
+          set({
+            character: {
+              ...char,
+              maxHitPoints: value,
+            },
+          })
+        }
+      },
       changeLevel: () => {
         const char = get().character
 
@@ -72,9 +87,11 @@ export const useCharSheet = create(
               ...char,
               level: char.level + 1,
             },
+            onLevelUp: true,
           })
         }
       },
+      resetOnLevelUp: () => set({ onLevelUp: undefined }),
     }),
     {
       name: 'characterSheet',

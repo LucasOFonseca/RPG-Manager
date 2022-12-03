@@ -22,6 +22,7 @@ import {
 } from '../../../../helpers/utils'
 import { Character, CharacterForm, RaceType } from '../../../../shared/models'
 import { useCharSheet } from '../../../../stores/useCharSheet'
+import { useSpells } from '../../../../stores/useSpells'
 import { AbilitiesStep } from './components/AbilitiesStep'
 import { BasicInfoStep } from './components/BasicInfoStep'
 
@@ -46,6 +47,7 @@ export const CreateCharacterDialog: React.FC<CreateCharacterDialogProps> = ({
   open,
 }) => {
   const { setCharacter, setRace, setClass } = useCharSheet()
+  const { setSpells } = useSpells()
 
   const [currentStep, setCurrentStep] = useState(0)
 
@@ -71,7 +73,6 @@ export const CreateCharacterDialog: React.FC<CreateCharacterDialogProps> = ({
           languages: [],
         },
         abilities: values.abilities,
-        armorClass: 0,
         currentExperience: 0,
         currentHitPoints: 0,
         level: 1,
@@ -161,6 +162,17 @@ export const CreateCharacterDialog: React.FC<CreateCharacterDialogProps> = ({
             ],
           }
         ),
+      }
+
+      if (charClass.spellcasting) {
+        setSpells([
+          ...(values.background?.playerChoices?.cantrips ?? []),
+          ...(values.class?.playerChoices?.cantrips ?? []),
+          ...(values.class?.features.map(
+            (feature) => feature.playerChoices?.cantrips
+          ) ?? []),
+          ...(values.subRace?.playerChoices?.cantrips ?? []),
+        ])
       }
 
       setCharacter(valuesToUse)
