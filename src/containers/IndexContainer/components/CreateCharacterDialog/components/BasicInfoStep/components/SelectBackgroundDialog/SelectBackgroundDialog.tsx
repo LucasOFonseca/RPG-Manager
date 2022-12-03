@@ -88,9 +88,19 @@ export const SelectBackgroundDialog: React.FC<SelectBackgroundDialogProps> = ({
             value={selectedBackground ?? ''}
             label="Antecedente"
             onChange={({ target }) => {
+              if (
+                makeBackgroundSummaries()[target.value as BackgroundType]
+                  .playerChoices
+              ) {
+                setIsValidSubmit(false)
+              } else {
+                setIsValidSubmit(true)
+              }
+
               setSelectedBackground(target.value as BackgroundType)
             }}
           >
+            <MenuItem value={BackgroundType.criminal}>Criminoso</MenuItem>
             <MenuItem value={BackgroundType.outlander}>Forasteiro</MenuItem>
           </Select>
         </FormControl>

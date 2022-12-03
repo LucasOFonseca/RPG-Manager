@@ -3,6 +3,7 @@ import { Proficiencies } from './proficiency'
 
 export enum BackgroundType {
   outlander = 'outlander',
+  criminal = 'criminal',
 }
 
 export interface BackgroundFeatureSummary {

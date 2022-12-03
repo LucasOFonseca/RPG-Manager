@@ -40,4 +40,24 @@ export const makeBackgroundSummaries = (): ClassSummaries => ({
       },
     },
   },
+  criminal: {
+    type: BackgroundType.criminal,
+    name: 'Criminoso',
+    summary:
+      'Você é um criminoso experiênte com um histórico de contravenções. Você gastou um bom tempo entre outros criminosos e ainda mantém contato com eles e com o submundo do crime. Você está mais perto do que a maioria do submundo do assassinato, roubo e violência que prevalece no ventre da sociedade, e você sobreviveu até esse ponto desprezando a lei e os regulamentos da sociedade.',
+    feature: {
+      title: 'Contato criminal',
+      description:
+        'Você possui contatos de confiança que agem como seus informantes em uma rede criminosa. Você sabe como se comunicar com eles mesmo em grandes distâncias. Você conhece em especial os mensageiros locais, mestres de caravana corruptos, e marinheiros escusos que podem transmitir seus recados.',
+    },
+    equipment: [
+      'Um pé de cabra',
+      'Um conjunto de roupas escuras comuns com capuz',
+      'Uma algibeira contendo 15 po',
+    ],
+    proficiencies: {
+      skills: [Skill.deception, Skill.stealth],
+      tools: ['Kit de jogo', 'Ferramentas de ladrão'],
+    },
+  },
 })

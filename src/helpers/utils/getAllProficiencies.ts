@@ -34,7 +34,7 @@ export const getAllProficiencies = (
     ...(classProficiencies?.tools ?? []),
     ...(backgroundProficiencies?.tools ?? []),
     ...(playerChoices?.tools ?? []),
-  ]
+  ].filter((tool, index, arr) => arr.indexOf(tool) === index)
   const weapons = [
     ...(raceProficiencies?.weapons ?? []),
     ...(subRaceProficiencies?.weapons ?? []),
