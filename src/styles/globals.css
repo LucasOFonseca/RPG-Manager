@@ -5,7 +5,7 @@
 }
 
 main {
-  margin: 16px;
+  margin: 16px 16px 72px;
 }
 
 @media (prefers-color-scheme: dark) {
